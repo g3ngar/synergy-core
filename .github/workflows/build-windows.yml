@@ -49,7 +49,7 @@ jobs:
         cmake -DCMAKE_BUILD_TYPE=Release ..
         . ./version
         cd installer
-        msbuild /p:Configuration=Release
+        msbuild /p:Configuration=Release /p:Platform="x64"
     
     - name: Create Artifacts
       uses: actions/upload-artifact@v3
