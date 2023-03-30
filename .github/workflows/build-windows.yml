@@ -48,11 +48,17 @@ jobs:
         cd build
         cmake -DCMAKE_BUILD_TYPE=Release ..
         . ./version
-        cd installer
-        msbuild /p:Configuration=Release /p:Platform="x64"
+        msbuild synergy-core.sln /p:Configuration=Release /p:Platform="x64" /m
     
-    - name: Create Artifacts
+    - name: Create build Artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: installer
-        path: .\bin
+        name: build
+        path: .\build
+        
+    - name: Create OpenSSL Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: openssl
+        path: C:\Program Files\OpenSSL-Win64\
+          
