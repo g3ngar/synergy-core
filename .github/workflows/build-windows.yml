@@ -48,10 +48,11 @@ jobs:
         cd build
         cmake -DCMAKE_BUILD_TYPE=Release ..
         . ./version
-        msbuild synergy-core.sln /p:Configuration=Release /p:Platform="x64" /m
+        cd installer
+        msbuild /p:Configuration=Release
     
     - name: Create Artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: build
-        path: .\build
+        name: installer
+        path: .\bin
