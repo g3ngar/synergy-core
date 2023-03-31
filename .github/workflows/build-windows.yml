@@ -51,17 +51,17 @@ jobs:
         msbuild synergy-core.sln /p:Configuration=Release /p:Platform="x64" /m
     
     - name: Upload build
-      uses: Difegue/action-megacmd@master
+      uses: g3ngar/mega-put@v1
       with:
-        args: put build /synergy/build
-      env:
-        USERNAME: ${{ secrets.MEGA_USERNAME }}
-        PASSWORD: ${{ secrets.MEGA_PASSWORD }}
-    
+        mega_username: ${{ secrets.MEGA_USERNAME }}
+        mega_password: ${{ secrets.MEGA_PASSWORD }}
+        path: build
+        remote: build.tar
+
     - name: Upload OpenSSL
-      uses: Difegue/action-megacmd@master
+      uses: g3ngar/mega-put@v1
       with:
-        args: put "C:\Program Files\OpenSSL-Win64\" /synergy/openssl
-      env:
-        USERNAME: ${{ secrets.MEGA_USERNAME }}
-        PASSWORD: ${{ secrets.MEGA_PASSWORD }}
+        mega_username: ${{ secrets.MEGA_USERNAME }}
+        mega_password: ${{ secrets.MEGA_PASSWORD }}
+        path: C:\Program Files\OpenSSL-Win64\
+        remote: openssl.tar
