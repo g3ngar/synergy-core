@@ -50,15 +50,18 @@ jobs:
         . ./version
         msbuild synergy-core.sln /p:Configuration=Release /p:Platform="x64" /m
     
-    - name: Create build Artifacts
-      uses: actions/upload-artifact@v3
+    - name: Upload build
+      uses: Difegue/action-megacmd@master
       with:
-        name: build
-        path: .\build
-        
-    - name: Create OpenSSL Artifacts
-      uses: actions/upload-artifact@v3
+        args: put build /synergy/build
+      env:
+        USERNAME: ${{ secrets.MEGA_USERNAME }}
+        PASSWORD: ${{ secrets.MEGA_PASSWORD }}
+    
+    - name: Upload OpenSSL
+      uses: Difegue/action-megacmd@master
       with:
-        name: openssl
-        path: C:\Program Files\OpenSSL-Win64\
-          
+        args: put "C:\Program Files\OpenSSL-Win64\" /synergy/openssl
+      env:
+        USERNAME: ${{ secrets.MEGA_USERNAME }}
+        PASSWORD: ${{ secrets.MEGA_PASSWORD }}
